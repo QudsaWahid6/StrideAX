@@ -1,16 +1,14 @@
-import axios from "axios";
-
-const API = "http://localhost:5000/api/wishlist";
+import api from "./api";
 
 // Get Wishlist
 export const getWishlist = async () => {
-  const { data } = await axios.get(API);
+  const { data } = await api.get("/wishlist");
   return data.wishlist;
 };
 
 // Add Wishlist
 export const addWishlist = async (product) => {
-  const { data } = await axios.post(API, {
+  const { data } = await api.post("/wishlist", {
     user: "Ali",
     productName: product.name,
     price: product.price,
@@ -22,6 +20,6 @@ export const addWishlist = async (product) => {
 
 // Delete Wishlist
 export const deleteWishlist = async (id) => {
-  const { data } = await axios.delete(`${API}/${id}`);
+  const { data } = await api.delete(`/wishlist/${id}`);
   return data;
 };
